@@ -1,0 +1,105 @@
+.container{
+    /* display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url('../../../assets/loginBackground.svg');
+    background-size: 100dvh;
+    background-position: center; 
+    background-repeat: no-repeat; */
+
+    background: #FFF url('../../../assets/loginBackground.png') no-repeat;
+    
+    background-size: 50% 120%;
+    background-position: center; /* Adjust these values as needed */
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#header{
+    justify-content: center;
+    align-items: center;
+    margin-right: 5dvw;
+}
+h2{
+    color:#5D8AC4;
+    font-weight: 600;
+    font-size: x-large;
+    /* text-align: center; */
+    /* padding-left: 4dvw;
+    margin-top: -2dvh; */
+    margin-left: 6.5dvw;
+    margin-top: 0px;
+}
+
+#container {
+    border-radius: 5%;
+    margin-top: 10dvh;
+    width: 25vw;
+    height: 70dvh;
+    display:flex;
+    flex-direction: column;
+    gap: 5px;
+    justify-content: center;
+    align-items: center;
+    background-color: #FFFFFF;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+#email,#password {
+    background-color: #ECF7FF;
+    padding: 10px;
+    border-style: none;
+    margin: 5px;
+    border-radius: 5px;
+    /* color: #ffffff; */
+    width: 20vw;
+    text-align: left;
+    height: 7dvh;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    outline:  none;
+    /* box-shadow: 1px 1px 1px 1px rgb(187,187,187,1); */
+}
+
+/* #email:focus,#password:focus{
+    outline: rgb(102, 102, 207);
+    border: 2px solid rgb(112, 112, 178);
+} */
+#signin-btn{
+    /* background-color: #5D8AC4; */
+    margin-left: 100px;
+    padding: 5px;
+    border-style: none;
+    margin: 20px;
+    border-radius: 5px;
+    color: #ffffff;
+    width: 8vw;
+    text-align: center;
+    height: 6dvh;
+    box-shadow: 1px 1px 1px rgba(248, 246, 246, 0.5);
+}
+
+#signin-btn:hover{
+    cursor: pointer;
+}   
+
+.login-form {
+    max-width: 300px;
+  }
+
+  .login-form-margin {
+    margin-bottom: 16px;
+  }
+
+  .login-form-forgot {
+    float: right;
+  }
+
+  .login-form-button {
+    width: 100%;
+  }
+
+  small {
+    color: red;
+    font-size: 12px;
+  }

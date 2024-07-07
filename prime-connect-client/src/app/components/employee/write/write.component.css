@@ -1,0 +1,27 @@
+/* app-write{
+
+    height: 100vh;
+    width: auto;
+} */
+
+.container {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    
+}
+
+.left-side {
+    width: 50%;
+    /* flex: 1; */
+    background-color: yellow;
+}
+  
+.card{
+    display : flex; 
+    align-items: center;
+}
+.wrapper {
+    display : flex!important; 
+    align-items: center!important;
+}

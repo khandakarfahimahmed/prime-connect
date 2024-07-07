@@ -1,0 +1,73 @@
+<div style="position: relative; background-color: #F6F6F6;">
+ <div id="container">
+  <div id = "main" [ngClass]="{'dashboard-disble-blur' : team}">
+    <h2 style="font-weight: bold; font-size: xx-large; text-align: left; margin-left: 30px; color: #746363">Dashboard</h2>
+
+    <div id = "body">
+        <div id = "success-rate">
+          <apx-chart
+          [ngStyle]="{height: '100%', width: '100%', margin: '20px'}"
+          [series]="series1"
+          [chart]="chart1"
+          [fill]="fill1"
+          [dataLabels]="dataLabels1"
+          [responsive]="responsive1"
+          [title] = "title1"
+          [plotOptions]="plotOptions1"
+          [labels]="labels1"
+        ></apx-chart>
+        </div>
+
+        <div id = "completion-time">
+           <apx-chart [series]="series" [chart]="chart" [title]="title" style="width:100%"></apx-chart>
+        </div>
+
+    </div>
+
+    <div id = "error-rate">
+      <apx-chart
+      [series]="series2"
+      [chart]="chart2"
+      [xaxis]="xaxis2"
+      [stroke]="stroke2"
+      [tooltip]="tooltip2"
+      [dataLabels]="dataLabels2"
+      [legend]="legend2"
+      [markers]="markers2"
+      [grid]="grid2"
+      [annotations]="annotations2"
+      [title]="title2"
+    ></apx-chart>
+    </div>
+
+  </div>
+
+  <div id = "right-sidebar" [ngClass]="{'dashboard-disble-blur' : team}">
+  <div id="search-container">
+    <input type="text" placeholder="Search for anything..." id="search"><i class="fas fa-search"></i>
+  </div>
+    <div id = "daily-target">
+      <apx-chart
+      [title]="title3"
+      [series]="series3"
+      [chart]="chart3"
+      [grid]="grid3"
+      [plotOptions]="plotOptions3"
+      [responsive]="responsive3"
+      [labels]="labels3"
+    ></apx-chart>
+    </div>
+    <div><span style="font-weight: bold; font-size: large;">Cards</span><button type="button" id="plus-button">+</button></div>
+
+    <div id = "card1"><span style="font-weight: bold; font-size: large;">Total Card Issued</span></div>
+
+    <div id = "card2"><span style="font-weight: bold; font-size: large;">Total A/C Turnover</span></div>
+
+    <div id="card3"><span style="font-weight: bold; font-size: large;">Total Check Book Issued</span></div>
+
+  </div>
+ </div>
+
+  <app-loader *ngIf="isLoading"></app-loader>
+
+</div>

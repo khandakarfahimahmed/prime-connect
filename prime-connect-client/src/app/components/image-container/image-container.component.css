@@ -1,0 +1,72 @@
+
+.image-container {
+    /* position: relative; */
+    max-width: 100%; /* Adjust as needed */
+    max-height: 100%; /* Adjust as needed */
+}
+::ng-deep .ngxImageZoomContainer > img{
+    max-height: 90dvh;
+    max-width: 70dvw;
+  }
+.close-button {
+    position: absolute;
+    top: 10px; /* Adjust as needed */
+    right: 10px; /* Adjust as needed */
+    cursor: pointer;
+    color: white;
+    font-size: 20px;
+}
+.container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    /* background-color: #FFFFFF; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999999;
+}
+.image-container {
+    position: relative; /* Ensure positioning relative to the container */
+    width: 100%;
+    height: 100%;
+    max-width: 80%; /* Adjust as needed */
+    max-height: 80%; /* Adjust as needed */
+}
+.close-button {
+    position: absolute;
+    top: 20px; /* Adjust as needed */
+    right: 20px; /* Adjust as needed */
+    cursor: pointer;
+    color: white;
+    font-size: 30px;
+    transition: transform 0.3s ease; /* Transition for icon growth */
+}
+.close-button:hover {
+    transform: scale(1.3); /* Scale the icon on hover */
+}
+
+/* blinkng  */
+.blink-container {
+    position: absolute;
+    width: 10px; /* Adjust the size of the blink container as needed */
+    height: 10px;
+    background-color: red; /* Adjust the color of the blink container as needed */
+  }
+  
+  .blink {
+    animation: blink-animation 5s infinite alternate;
+  }
+  
+  @keyframes blink-animation {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+

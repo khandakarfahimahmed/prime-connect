@@ -1,0 +1,27 @@
+<section>
+  <div id="chart2 " class="chart-container2">
+    <apx-chart
+      [series]="chartOptions2.series"
+      [chart]="chartOptions2.chart"
+      [yaxis]="chartOptions2.yaxis"
+      [xaxis]="chartOptions2.xaxis"
+      [labels]="chartOptions2.labels"
+      [stroke]="chartOptions2.stroke"
+      [plotOptions]="chartOptions2.plotOptions"
+      [markers]="chartOptions2.markers"
+      [fill]="chartOptions2.fill"
+      [tooltip]="chartOptions2.tooltip"
+      style="height: 100%; width: 100%"
+    ></apx-chart>
+    <div class="items">
+      <div class="percentage">
+        <div class="box1"></div>
+        <h2>{{ inActivePercentage }}%</h2>
+      </div>
+      <div class="percentage">
+        <div class="box2"></div>
+        <h2>{{ activePercentage }}%</h2>
+      </div>
+    </div>
+  </div>
+</section>

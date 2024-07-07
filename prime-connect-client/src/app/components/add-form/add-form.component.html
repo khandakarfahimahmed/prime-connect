@@ -1,0 +1,148 @@
+
+<nz-drawer
+  [nzBodyStyle]="{ overflow: 'auto' }"
+  [nzMaskClosable]="false"
+  [nzWidth]="720"
+  [nzVisible]="visible"
+  nzTitle="Create"
+  [nzFooter]="footerTpl"
+  (nzOnClose)="close()"
+>
+
+  <form nz-form *nzDrawerContent>
+    <div nz-row [nzGutter]="8">
+      <div nz-col nzSpan="12">
+        <nz-form-item>
+          <nz-form-label>Name</nz-form-label>
+          <nz-form-control>
+            <!-- <input nz-input placeholder="Form Name" [(ngModel)]="formName" /> -->
+            <input nz-input placeholder="Form Name" [(ngModel)]="formName" [ngModelOptions]="{ standalone: true }" />
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+
+    <!-- <div nz-row [nzGutter]="8">
+      <div nz-col nzSpan="12">
+        <nz-form-item>
+          Place the dropdown button here
+          
+        </nz-form-item>
+      </div>
+    </div> -->
+<!-- 
+    <div nz-row [nzGutter]="8">
+      <div nz-col nzSpan="12">
+        <form [formGroup]="dropDownForm">
+          <ng-multiselect-dropdown
+            [settings]="dropdownSettings"
+            [data]="dropdownList"
+            formControlName="myItems"
+          ></ng-multiselect-dropdown>
+        </form>
+      </div>
+    </div> -->
+
+
+    <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+      <ng-container *ngFor="let control of listOfControl; let i = index">
+        <nz-form-item>
+          <!-- <nz-form-label [nzXs]="24" [nzSm]="4" [nzFor]="control.controlInstance"> Passengers </nz-form-label> -->
+          <nz-form-control
+            [nzXs]="24"
+            [nzSm]="20"
+            [nzOffset]="i === 0 ? 0 : 0"
+            nzErrorTip="Please input passenger's name or delete this field."
+          >
+            <input
+              class="passenger-input"
+              nz-input
+              placeholder="field name..."
+              [attr.id]="'name' + control.id"
+              [formControlName]="control.controlInstance + '_name'"
+            />
+            <input
+              class="passenger-input"
+              nz-input
+              placeholder="field value type..."
+              [attr.id]="'type' + control.id"
+              [formControlName]="control.controlInstance + '_type'"
+            />
+            <input
+              class="passenger-input"
+              nz-input
+              placeholder="enter page No."
+              [attr.id]="'page' + control.id"
+              [formControlName]="control.controlInstance + '_page'"
+            />
+            <input
+              class="passenger-input"
+              nz-input
+              placeholder="coordinateX"
+              [attr.id]="'coordinateX' + control.id"
+              [formControlName]="control.controlInstance + '_coordinateX'"
+            />
+            <input
+              class="passenger-input"
+              nz-input
+              placeholder="coordinateY"
+              [attr.id]="'coordinateY' + control.id"
+              [formControlName]="control.controlInstance + '_coordinateY'"
+            />
+            <input
+              class="passenger-input"
+              nz-input
+              placeholder="Sequence"
+              [attr.id]="'sequence' + control.id"
+              [formControlName]="control.controlInstance + '_sequence'"
+            />
+            <select
+              class="passenger-input"
+              nz-input
+              placeholder="pdf_id"
+              [attr.id]="'pdfId' + control.id"
+              [formControlName]="control.controlInstance + '_pdfId'"
+            >
+            <option value="" [disabled]="true" [selected]="true">--select pdf--</option>
+              <option *ngFor="let pdf of pdfList" [value]="pdf.id" >{{pdf.pdf_name}}</option>
+           </select>
+            <input
+              class="passenger-input"
+              nz-input
+              placeholder="estimatedTime"
+              [attr.id]="'estimatedTime' + control.id"
+              [formControlName]="control.controlInstance + '_estimatedTime'"
+            />
+            <span
+              nz-icon
+              nzType="minus-circle-o"
+              class="dynamic-delete-button"
+              (click)="removeField(control, $event)"
+            ></span>
+          </nz-form-control>
+        </nz-form-item>
+      </ng-container>
+    
+      <nz-form-item>
+        <nz-form-control [nzXs]="{ span: 24, offset: 0 }" [nzSm]="{ span: 20, offset: 4 }">
+          <button nz-button nzType="dashed" class="add-button" (click)="addField($event)">
+            <span nz-icon nzType="plus"></span>
+            add new field
+          </button>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-control [nzXs]="{ span: 24, offset: 0 }" [nzSm]="{ span: 20, offset: 4 }">
+          <button nz-button nzType="primary" type="submit">Confirm</button>
+        </nz-form-control>
+      </nz-form-item>
+    </form>
+  </form>
+
+  <ng-template #footerTpl>
+    <div style="float: right">
+      <button nz-button style="margin-right: 8px;" (click)="close()">Cancel</button>
+      <button nz-button nzType="primary" type = "submit"(click)="create(); submitForm()">Create</button>
+    </div>
+  </ng-template>
+</nz-drawer>

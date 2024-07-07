@@ -1,0 +1,38 @@
+.container {
+    padding: 20px; 
+}
+
+input,select{
+    height: 4dvh;
+    width: auto;
+    margin: 5px;
+    padding: 5px;
+    border-style: none;
+    border-bottom: 1px solid gray;
+    outline: none;
+}
+
+
+/* textarea {
+    overflow: hidden;
+    resize: none;
+    height: 10dvh;
+    width: 95%;
+    margin: 5px;
+    padding: 10px;
+    border-style: none;
+    border-bottom: 1px solid gray;
+    outline: none;
+} */
+
+.btn {
+    display: flex;
+    gap: 50%;
+    margin-left: 10px;
+    padding: 10px;
+}
+.team-info {
+    display: flex;
+    gap: 10px;
+    margin: 10px;
+}

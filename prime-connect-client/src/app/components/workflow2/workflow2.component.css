@@ -1,0 +1,140 @@
+.editable-cell {
+  position: relative;
+  padding: 5px 12px;
+  cursor: pointer;
+}
+
+.editable-row:hover .editable-cell {
+  border: 1px solid #d9d9d9;
+  border-radius: 4px;
+  padding: 4px 11px;
+}
+
+#container {
+  background-color: #fffdfd;
+  margin: 2rem;
+  display: flex;
+  gap: 2dvw;
+  margin-left: 8.5dvw;
+  /* right: 40dvw; */
+}
+
+.role-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-top: 1rem;
+}
+
+.role {
+  display: flex;
+  /* justify-content: space-around; */
+  gap: 5dvw;
+  background-color: #ffffff;
+  box-shadow: 1px 2px 4px rgb(219, 217, 217);
+  height: 7dvh;
+  width: 85dvw;
+  padding: 10px;
+}
+
+.heading {
+  display: flex;
+  gap: 10dvw;
+  background-color: #ffffff;
+  font-size: large;
+  font-weight: 400;
+  height: 7dvh;
+  width: 85dvw;
+  padding: 10px;
+  /* text-align: center; */
+}
+
+#add-role-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  background-color: #dfdfef;
+  /* color: #FFFFFF; */
+  font-size: large;
+  margin-left: 50%;
+}
+
+.btn {
+  display: flex;
+  gap: 50%;
+  margin-left: 10px;
+  padding: 10px;
+}
+
+.create-form-enable {
+  background-color: rgb(64, 169, 255);
+  color: #ffffff;
+  border-style: none;
+  height: 4dvh;
+  padding: 8px;
+}
+.create-form-enable:hover {
+  cursor: pointer;
+}
+.create-form-disable {
+  background-color: rgb(64, 169, 255);
+  color: #ffffff;
+  height: 2dvh;
+  padding: 5px;
+}
+
+.update {
+  left: 67.6dvw;
+}
+.update:hover {
+  cursor: pointer;
+}
+
+.delete {
+  color: rgb(64, 169, 255, 2);
+}
+.delete:hover {
+  cursor: pointer;
+}
+
+/* update role css */
+
+input,
+select {
+  height: 5dvh;
+  width: 95%;
+  margin: 10px;
+  /* padding: 10px; */
+  border-style: none;
+  border-bottom: 1px solid gray;
+  outline: none;
+}
+.image-container {
+  position: absolute;
+  max-width: 30dvw;
+  max-height: 80dvh;
+  z-index: 9999999;
+  left: 0;
+  width: fit-content;
+}
+textarea {
+  overflow: hidden;
+  resize: none;
+  height: 10dvh;
+  width: 95%;
+  margin: 10px;
+  /* padding: 10px; */
+  border-style: none;
+  border-bottom: 1px solid gray;
+  outline: none;
+}
+
+.btn {
+  display: flex;
+  gap: 50%;
+  margin-left: 10px;
+  padding: 10px;
+}

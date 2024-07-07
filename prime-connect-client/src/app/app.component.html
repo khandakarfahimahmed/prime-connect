@@ -1,0 +1,8 @@
+
+<div [ngClass]="{'display' : !router.url.includes('login')}">
+  <app-sidebar style="position: fixed;" *ngIf="!(router.url.includes('login') || router.url.includes('reviewer') || router.url.includes('write') || router.url.includes('read-write'))" ></app-sidebar>
+  <router-outlet></router-outlet>
+</div>
+
+
+<!-- <app-image-container></app-image-container> -->

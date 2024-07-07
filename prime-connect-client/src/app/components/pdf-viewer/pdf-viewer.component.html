@@ -1,0 +1,96 @@
+
+
+
+<!-- <ngx-extended-pdf-viewer
+  #pdfViewer
+  src="../../assets/pdf_example.pdf"
+  [textLayer]="true"
+  pageViewMode="multiple"
+  [(page)]="page"
+  [spread]="spreadMode"
+  [height]="'auto'"
+  [minZoom]="0.5"
+  [maxZoom]="0.9"
+>
+</ngx-extended-pdf-viewer> -->
+
+<!-- [customFindbarInputArea]="customFindbarInputArea"
+[customFindbarButtons]="customFindbarButtons" -->
+
+
+<!-- <ng-template #customFindbarInputArea>
+  <div id="findbarInputContainer">
+    <pdf-search-input-field>
+      <input type="text" id="findInput" />
+    </pdf-search-input-field>
+  </div>
+</ng-template>
+
+<ng-template #customFindbarButtons>
+  <div class="no-float">
+    <pdf-find-input-area
+      [customFindbarInputArea]="customFindbarInputArea"
+    ></pdf-find-input-area>
+  </div>
+  <div class="no-float">
+    <pdf-find-highlight-all></pdf-find-highlight-all>
+    <pdf-find-match-case></pdf-find-match-case>
+    <pdf-find-entire-word></pdf-find-entire-word>
+    <pdf-find-results-count></pdf-find-results-count>
+    <pdf-findbar-message-container></pdf-findbar-message-container>
+    <pdf-find-previous></pdf-find-previous>
+    <pdf-find-next></pdf-find-next>
+  </div>
+</ng-template> -->
+
+
+<ngx-extended-pdf-viewer
+  #pdfViewer
+  [customFindbarInputArea]="customFindbarInputArea"
+  [customFindbarButtons]="customFindbarButtons"
+  [src]= "'../../assets/sample.pdf'"
+  [textLayer]="true"
+  [showHandToolButton]="true"
+  pageViewMode="multiple"
+  [(page)]="page"
+  [spread]="spreadMode"
+  [textLayer]="true" 
+  [height]="'auto'"
+  [minZoom]="0.5"
+  [maxZoom]="0.7"
+>
+</ngx-extended-pdf-viewer>
+<ng-template #customFindbarInputArea>
+  <div id="findbarInputContainer">
+    <pdf-search-input-field>
+      <input type="text" id="findInput" />
+    </pdf-search-input-field>
+  </div>
+</ng-template>
+<ng-template #customFindbarButtons>
+  <div class="no-float">
+    <pdf-find-input-area
+      [customFindbarInputArea]="customFindbarInputArea"
+    ></pdf-find-input-area>
+  </div>
+  <div class="no-float">
+    <pdf-find-highlight-all></pdf-find-highlight-all>
+    <pdf-find-match-case></pdf-find-match-case>
+    <pdf-find-entire-word></pdf-find-entire-word>
+    <pdf-find-results-count></pdf-find-results-count>
+    <pdf-findbar-message-container></pdf-findbar-message-container>
+    <pdf-find-previous></pdf-find-previous>
+    <pdf-find-next></pdf-find-next>
+  </div>
+</ng-template>
+
+
+
+
+
+
+
+
+
+
+

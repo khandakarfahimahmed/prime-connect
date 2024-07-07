@@ -1,0 +1,31 @@
+<add-team [visible] = "showAddForm" (isVisibleChange)="changeVisible($event)"></add-team>
+<app-loader *ngIf="isLoading"></app-loader>
+<div class="app-teams">
+  <div class="team-container">
+    <div class="header-plus">
+      <h2>Teams List</h2>
+      <span nz-icon nzType="plus" nzTheme="outline" nzTheme="outline" (click)="addTeam()" class="add-team-btn"></span>
+    </div>
+
+    <div class = "team" *ngFor="let team of teams; let i = index" (click)="teamClicked(i)">
+      {{ team.name }}
+    </div>
+  </div>
+  
+
+  <div class="grid-container">
+    <div *ngFor="let row of chunkArray(teamEmployees, 3)" class="grid-row">
+      <div *ngFor="let item of row" class="grid-item">
+        <h5 style="text-align: left; color: #FFFFFF;">
+          {{ item.name }}
+        </h5>
+        <br />
+        <h4 style="color:rgb(83,202,253);">{{ item.activeEmployee.length }}/{{ item.employees.length }}</h4>
+
+        <h6 style="color: rgb(180,165,229); display: inline">active/total </h6>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- *ngIf = "!router.url.includes('app-teams')" -->

@@ -1,0 +1,29 @@
+
+  input,select{
+    height: 5dvh;
+    width: 95%;
+    margin: 10px;
+    /* padding: 10px; */
+    border-style: none;
+    border-bottom: 1px solid gray;
+    outline: none;
+}
+
+textarea {
+    overflow: hidden;
+    resize: none;
+    height: 10dvh;
+    width: 95%;
+    margin: 10px;
+    /* padding: 10px; */
+    border-style: none;
+    border-bottom: 1px solid gray;
+    outline: none;
+}
+
+.btn {
+    display: flex;
+    gap: 50%;
+    margin-left: 10px;
+    padding: 10px;
+}

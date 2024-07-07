@@ -1,0 +1,32 @@
+<div class="carousel-container">
+  <div
+    class="carousel-slide"
+    [style.transform]="'translateX(-' + currentIndex * 100 + '%)'"
+  >
+    <div *ngFor="let image of images; let i = index" class="slide">
+      <div class="lib-ngx-image-zoom">
+        <div
+          class="content-focusser"
+          [style.top.px]="coordinateY"
+          
+          
+          
+        ></div>
+        <lib-ngx-image-zoom
+          style="position: relative; z-index: 1"
+          [thumbImage]="image"
+        ></lib-ngx-image-zoom>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="radio-buttons">
+  <input
+    type="radio"
+    name="slide"
+    [checked]="currentIndex === i"
+    (click)="goToSlide(i)"
+    *ngFor="let image of images; let i = index"
+  />
+</div>

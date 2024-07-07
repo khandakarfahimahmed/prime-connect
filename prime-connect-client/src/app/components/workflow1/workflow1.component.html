@@ -1,0 +1,7 @@
+<app-loader *ngIf="isLoading"></app-loader>
+<div class="team-container">
+    <h2>Teams List</h2>
+    <div class = "team" *ngFor="let team of teams; let i = index" (click)="teamClicked(team.id)">
+        {{team.name}}
+    </div>
+</div>

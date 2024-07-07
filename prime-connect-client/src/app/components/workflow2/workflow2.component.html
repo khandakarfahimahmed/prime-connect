@@ -1,0 +1,198 @@
+<app-loader *ngIf="isLoading"></app-loader>
+<div
+  class="img-container"
+>
+  <image-container
+    (passCoord)="getCoord($event)"
+  ></image-container>
+</div>
+
+<create-form
+  [visible]="showAddForm"
+  (isVisibleChange)="changeVisible($event)"
+  [team_id]="teamId"
+  [role_id]="roleId"
+  [fieldCoord]="fieldCoord"
+  (fieldImageInfo)="fieldImage($event)"
+></create-form>
+
+
+<div>
+  <update-workflow-form
+  [defaultFormInfo]="formInfo"
+  [visible]="showUpdateForm"
+  [fieldCoord]="fieldCoord"
+  (isVisibleChange)="changeUpdateVisible($event)"
+  (fieldImageInfo)="fieldImage($event)"
+></update-workflow-form>
+</div>
+
+<div id="container">
+  <workflow1></workflow1>
+  <div>
+    <h2>Workflow</h2>
+    <h3 style="color: #7d6d6d; margin-top: 10px">
+      Workflow for {{ teamName }} team
+    </h3>
+
+    <button
+      nz-button
+      (click)="visible = !visible"
+      nzType="primary"
+      class="update"
+    >
+      Update
+    </button>
+    <br />
+    <br />
+    <nz-table
+      #editRowTable
+      nzBordered
+      style="height: auto; width: 72dvw"
+      [nzData]="updatedWorkflow"
+      *ngIf="updatedWorkflow.length > 0"
+    >
+      <thead>
+        <tr>
+          <th>SL.</th>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Access</th>
+          <th>isAuthor</th>
+          <th>Sequence</th>
+          <th>Action 1</th>
+          <th>Action 2</th>
+          <!-- <th >Action3</th> -->
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="let role of updatedWorkflow; let i = index"
+          class="editable-row"
+        >
+          <td>{{ i + 1 }}</td>
+          <td>{{ role.name }}</td>
+          <td>{{ role.description }}</td>
+          <td>{{ role.access }}</td>
+          <td>{{ role.isAuthor }}</td>
+          <td>{{ role.sequence }}</td>
+          <td>
+            <a
+              class="delete"
+              nz-popconfirm
+              nzPopconfirmTitle="Sure to delete?"
+              (click)="deleteRole(role.id)"
+              >Delete</a
+            >
+          </td>
+          <!-- <td>
+                <a nz-popconfirm nzPopconfirmTitle="Sure to edit?" (create)="editRole(role.TeamRole?.id)">Edit</a>
+              </td> -->
+          <td *ngIf="!formRoles.includes(role.id) || role.access === 'Read'">
+            <button
+              [disabled]="role.access?.includes('Read') "
+              [ngClass]="{ 'create-form-enable': !role.access?.includes('Read') }"
+              nz-popconfirm
+              nzPopconfirmTitle="Sure to edit?"
+              (click)="createForm(role.id)"
+            >
+              Create Form
+            </button>
+          </td>
+          <td *ngIf="formRoles.includes(role.id)">
+            <button
+              [disabled]="role.access === 'Read'"
+              [ngClass]="{ 'create-form-enable': role.access !== 'Read' }"
+              nz-popconfirm
+              nzPopconfirmTitle="Sure to edit?"
+              (click)="updateForm(role.id)"
+            >
+              Update Form
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </nz-table>
+  </div>
+</div>
+<!-- new roled added form -->
+
+<div>
+  <nz-drawer
+    [nzBodyStyle]="{ overflow: 'auto' }"
+    [nzMaskClosable]="false"
+    [nzWidth]="720"
+    [nzVisible]="visible"
+    nzTitle="Create"
+    [nzFooter]="footerTpl"
+    (nzOnClose)="close()"
+  >
+    <!-- <div> -->
+    <!-- <h3 style="margin: 10px;">Create a new Role</h3> -->
+    <!-- <div class="form-container"> -->
+    <form *nzDrawerContent [formGroup]="addNewRole" (ngSubmit)="onAddRole()">
+      <div>
+        <select
+          formControlName="roleId"
+          placeholder="Enter the name of new role..."
+        >
+          <option value="" [disabled]="true" [selected]="true">
+            Select Role
+          </option>
+          <option *ngFor="let role of roles" [value]="role.id">
+            {{ role.name }}
+          </option>
+        </select>
+      </div>
+      <div>
+        <label style="margin: 10px">Is this role an author ?</label
+        ><input
+          type="checkbox"
+          formControlName="isAuthor"
+          [value]="false"
+          style="
+            height: 15px;
+            width: 15px;
+            margin-left: 0px;
+            margin-bottom: 0px;
+          "
+        />
+      </div>
+      <div>
+        <!-- <Label style="margin:10px">Which is the access ability of this role ?</Label><br> -->
+        <select formControlName="access">
+          <option value="" [disabled]="true" [selected]="true">
+            Select accessibility
+          </option>
+          <option>Read</option>
+          <option>Write</option>
+          <option>Read_Write</option>
+        </select>
+      </div>
+      <div>
+        <!-- <label style="margin:10px">What is the sequence of this role ?</label><br> -->
+        <input
+          type="number"
+          formControlName="sequence"
+          placeholder="Enter the sequence number of this role"
+        />
+      </div>
+    </form>
+
+    <ng-template #footerTpl>
+      <div style="float: right">
+        <button nz-button style="margin-right: 8px" (click)="close()">
+          Cancel
+        </button>
+        <button
+          nz-button
+          nzType="primary"
+          type="submit"
+          (click)="create(); onAddRole()"
+        >
+          Create
+        </button>
+      </div>
+    </ng-template>
+  </nz-drawer>
+</div>

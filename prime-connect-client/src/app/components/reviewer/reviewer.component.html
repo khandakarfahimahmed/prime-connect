@@ -1,0 +1,67 @@
+<div id="container">
+    <app-loader *ngIf="isLoading"></app-loader>
+    <div id="form" *ngIf = "reviewerForm">
+      <!-- <h3>VIEW CUSTOMER PROFILE</h3> -->
+      <form [formGroup]="reviewerForm" (ngSubmit)="onSubmit()" class="form-container">
+        <div>
+            <h3>VIEW CUSTOMER PROFILE</h3>
+        </div>
+        <div>
+            <label>Account's Name: </label>
+            <input type="text" formControlName="name" >
+        </div>
+        <div>
+            <label>Account's Type: </label>
+            <input type="text" formControlName="acc_type">
+        </div>
+        <div>
+            <label>Account's Number: </label>
+            <input type="text" formControlName="acc_id">
+        </div>
+        <div>
+            <label>Customer's Id: </label>
+            <input type="text" formControlName="customer_id">
+        </div>
+        <div>
+            <label>Contact: </label>
+            <input type="text" formControlName="phone">
+        </div>
+        <div>
+            <label>NID: </label>
+            <input type="text" formControlName="nid">
+        </div>
+        <div>
+            <label>Birth Certificate Number: </label>
+            <input type="text" formControlName="birth_certificate">
+        </div>
+        <div>
+            <label>Address: </label>
+            <input type="text" formControlName="address">
+        </div>
+        <div>
+            <label>Email: </label>
+            <input type="text" formControlName="email">
+        </div>
+        <div>
+            <label>TIN No: </label>
+            <input type="text" formControlName="tin">
+        </div>
+        <div>
+            <button type = "submit">Submit</button>
+        </div>
+    </form>
+    </div>
+    <div id="file">
+        <div id = "pdf-btn">
+            <nz-radio-group [(ngModel)]="radioValue" nzButtonStyle="solid">
+                <label nz-radio-button nzValue="form" (click)="formClicked()">Form</label>
+                <label nz-radio-button nzValue="nid" (click)="nidClicked()">NID</label>
+                <label nz-radio-button nzValue="tin" (click)="tinClicked()">TIN</label>
+                <!-- <label nz-radio-button nzValue="D">Chengdu</label> -->
+              </nz-radio-group>
+        </div>
+        <app-example-pdf-viewer [src]="source"></app-example-pdf-viewer>
+
+      </div>
+  </div>
+  

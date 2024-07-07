@@ -1,0 +1,91 @@
+<nz-drawer
+  [nzBodyStyle]="{ overflow: 'auto' }"
+  [nzMaskClosable]="false"
+  [nzWidth]="1200"
+  [nzVisible]="visible"
+  nzTitle="Create"
+  [nzFooter]="footerTpl"
+  (nzOnClose)="close()"
+>
+  <form *nzDrawerContent [formGroup]="addNewForm">
+           <div>
+            <!-- <label for="formName">Form Name: </label> -->
+            <input type="text" id="formName" formControlName="name" placeholder="Enter form  name..."/>
+          </div>
+          <div formArrayName="fields" class = "fields">
+            <div *ngFor="let field of fieldsFormArray.controls; let fieldIndex = index" [formGroupName]="fieldIndex">
+              <!-- <hr /> -->
+              <!-- <span (click)="removeField(fieldIndex)" id = "remove-field" nz-icon nzType="delete" nzTheme="outline" title="field"></span> -->
+              <!-- <button type="button" (click)="removeField(fieldIndex)" id = "remove-field"><span nz-icon nzType="delete" nzTheme="outline" title="delete field"></span></button> -->
+            
+              <div class="field-info">
+                <div style="margin-top: 3dvh;">{{fieldIndex+1}}. </div>
+                  <div>
+                    <input type="text" formControlName="field_name" placeholder="Enter field name..."/>
+                 </div>
+                 <div style="margin-top: 0.5dvh;">
+                   <select formControlName="field_type" placeholder="Enter field type..." > 
+                     <option value="" [disabled] = "true" [selected] = "true">Select field type</option>
+                     <option *ngFor="let type of fieldTypes" [value]="type">{{type}}</option>
+                   </select>
+                 </div>
+                 <div>
+                   <input type="text"  formControlName="estimated_time" placeholder="Estimated time..."/>
+                 </div>
+                 <div>
+                   <input type="text" id="sequence{{fieldIndex}}" formControlName="sequence" placeholder="Enter sequence..."/>
+                 </div>
+
+                <div style="margin-top: 3dvh;">
+                  <span (click)="removeField(fieldIndex)" id = "remove-field" nz-icon nzType="delete" nzTheme="outline" title="remove field"></span>
+                </div>
+
+              </div>
+              <div class="pdf" formArrayName="location">
+                <div *ngFor="let pdf of getPdfsFormArray(fieldIndex).controls; let pdfIndex = index" [formGroupName]="pdfIndex">
+                 
+                  <div style="display: flex; gap: 10px;">
+                   <div style=" margin-top: 3dvh"> {{pdfIndex+1}}.</div>
+                    <div style=" width: 10dvw">
+                      
+                      <select type="text"  formControlName="pdf_id" style="width: 100%">
+                        <option value="" [disabled] = "true" [selected] = "true" >Select pdf</option>
+                        <option *ngFor="let pdf of pdfs" [value]="pdf.id">{{pdf.pdf_name}}</option>
+                       </select>
+                    </div>
+                      <div style="margin-top: 2.7dvh; " (click)="removePdf(fieldIndex, pdfIndex)" id = "remove-pdf" nz-icon nzType="delete" nzTheme="outline" title="remove pdf"></div>
+                  </div>
+                  <div class = "pages" formArrayName="position">
+                    <div *ngFor="let page of getPagesFormArray(fieldIndex, pdfIndex).controls; let pageIndex = index" [formGroupName]="pageIndex">
+                      <div class="page-info">
+                        <div style="margin-top: 3dvh;">{{pageIndex+1}}.</div>
+                        <div>
+                          <input type="text"  formControlName="page" placeholder="Enter page number..." />
+                        </div>
+                        <div>
+                          <input type="text" formControlName="co_ordinate" (input)="coordinateInput($event,fieldIndex,pdfIndex,pageIndex)"  (click)="showFieldImage($event,fieldIndex,pdfIndex,pageIndex)" />
+                        </div>
+                        <div style="margin-top: 3dvh">
+                          <span (click)="removePage(fieldIndex, pdfIndex, pageIndex)" id = "remove-page" nz-icon nzType="delete" nzTheme="outline" title="remove page"></span>
+                        </div>
+                      </div>
+                    </div>
+                    <button type="button" (click)="addPage(fieldIndex, pdfIndex)" id = "add-page">Add Page</button>
+                  </div>
+                </div>
+                <button type="button" (click)="addPdf(fieldIndex)" id = "add-pdf">Add PDF</button>
+              </div>
+              <hr>
+            </div>
+          </div>       
+          <button type="button" (click)="addField()" id = "add-field">Add Field</button>
+   </form>
+
+   <ng-template #footerTpl>
+    <div style="float: right">
+      <button nz-button style="margin-right: 8px;" (click)="close()">Cancel</button>
+      <button nz-button nzType="primary" [disabled]="!addNewForm.valid" type = "submit"(click)="create();">Create</button>
+    </div>
+  </ng-template>
+</nz-drawer>
+

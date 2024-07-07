@@ -1,0 +1,26 @@
+.items {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* margin-right: 0.3rem; */
+  gap: 6rem;
+  margin-left: 1.5rem;
+}
+.box1 {
+  height: 1.2rem;
+  width: 1.2rem;
+  background-color: #cccccc;
+  border-radius: 30%;
+}
+.percentage {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.box2 {
+  height: 1.2rem;
+  width: 1.2rem;
+  background: linear-gradient(to right, #cff9cf, #57bafb);
+  border-radius: 30%;
+}

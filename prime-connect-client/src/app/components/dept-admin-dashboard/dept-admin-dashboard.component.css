@@ -1,0 +1,71 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  margin-left: 2.5rem;
+  row-gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+.upper-part {
+  height: 46vh;
+  width: 90vw;
+  display: flex;
+  /* align-items: center; */
+}
+.lower-part {
+  height: 46vh;
+  width: 90vw;
+  display: flex;
+  column-gap: 2rem;
+}
+.chart1 {
+  height: auto;
+  width: 30vw;
+  /* align-self: start; */
+  padding-top: 6dvh;
+}
+.chart2 {
+  height: auto;
+  width: 27vw;
+  align-self: end;
+}
+.chart3 {
+  height: auto;
+  width: 40vw;
+  align-self: end;
+}
+.card {
+  color: #283593;
+  padding: 10px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  height: 9dvh;
+  width: fit-content;
+}
+.row {
+  display: flex;
+}
+.col-8,
+.col-4 {
+  margin: 0 10px;
+}
+.card-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 63.5dvh;
+  height: parent;
+  gap: 0.6rem;
+  margin-left: 10px;
+}
+.rounded-card {
+  font-size: smaller;
+  height: fit-content;
+  width: fit-content;
+  /* box-shadow: 0 2px 3px rgba(0, 1, 0, 0.1), 1px 1px rgba(0, 0, 0, 0.08); */
+  border-radius: 20rem;
+  background-color: #d9f4e6;
+  justify-content: center;
+  padding: 2px;
+
+  color: #02b15a;
+  align-items: center;
+}

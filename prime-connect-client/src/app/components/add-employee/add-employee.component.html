@@ -1,0 +1,76 @@
+<nz-drawer
+  [nzBodyStyle]="{ overflow: 'auto' }"
+  [nzMaskClosable]="false"
+  [nzWidth]="720"
+  [nzVisible]="visible"
+  nzTitle="Create"
+  [nzFooter]="footerTpl"
+  (nzOnClose)="close()"
+>
+        <form nz-form *nzDrawerContent [formGroup]="addNewEmployee" (ngSubmit)="onAddEmployee()">
+            <div>
+                <input type="text" formControlName="name" placeholder="Enter the name of new employee...">
+            </div>
+            <div>
+                <input type="text" formControlName="age" placeholder="Enter the age of new employee...">
+            </div>
+            <div>
+                <input type="email" formControlName="email" placeholder="Enter the email of new employee...">
+            </div>
+            <div>
+                <input [type]="passwordVisible ? 'text' : 'password'" formControlName="password" placeholder="Enter your password...">
+                <span
+                nz-icon
+                style = " margin-left: -20dvw; cursor: pointer; font-size: large;"
+                [nzType]="passwordVisible ? 'eye-invisible' : 'eye'"
+                (click)="passwordVisible = !passwordVisible"
+              ></span>
+            </div>
+            <div *ngIf="addNewEmployee.controls['password'].invalid && (addNewEmployee.controls['password'].dirty || addNewEmployee.controls['password'].touched)">
+                <small *ngIf="addNewEmployee.controls['password']?.errors?.['required']">*Password is required.</small>
+              <small *ngIf="addNewEmployee.controls['password'].errors?.['minlength']">*Password must be at least 4 characters long.</small>
+            </div>
+            <div>
+                <input type="text" formControlName="phone" placeholder="Enter the contact of new employee...">
+            </div>
+            <div>
+              <label style="margin:10px">Is this employee active ?</label><input type="checkbox" formControlName="active" [value]="false" style="height: 15px; width: 15px; margin-left: 0px; margin-bottom: 0px">
+            </div>
+           <div>
+            <!-- <Label style="margin:10px">What is the admin status of this employee ?</Label><br> -->
+            <select formControlName="admin">
+                <option value="" [disabled]="true" [selected]="true">Select admin status</option>
+                <option>DA</option>
+                <option>TA</option>
+                <option>RA</option>
+                <option>none</option>
+            </select>
+           </div>
+           <div *ngIf = "departments != undefined">
+             <select  formControlName = "dept" (change)="deptSelect($event.target)">
+                <option value="" [disabled]="true" [selected]="true">Select department</option>
+                <option *ngFor="let dept of departments;" [value]="dept.id">{{dept.name}}</option>
+             </select>
+           </div>
+           <div *ngIf = "teams != undefined">
+              <select formControlName="team" (change)="teamSelect($event.target)">
+                <option value="" [disabled]="true" [selected]="true">Select team</option>
+                <option *ngFor="let team of teams;" [value]="team.id">{{team.name}}</option>
+              </select>
+           </div>
+           <div *ngIf = "roles != undefined">
+              <select formControlName="role">
+                <option value="" [disabled]="true" [selected]="true">Select role</option>
+                <option *ngFor="let role of roles;" [value]="role.id">{{role.name}}</option>
+              </select>
+           </div>
+  </form>
+
+  
+<ng-template #footerTpl>
+    <div style="float: right">
+      <button nz-button style="margin-right: 8px;" (click)="close()">Cancel</button>
+      <button nz-button nzType="primary" [disabled]="!addNewEmployee.valid" type = "submit"(click)="create(); onAddEmployee()">Create</button>
+    </div>
+  </ng-template>
+</nz-drawer>

@@ -1,0 +1,75 @@
+
+  <div style = "display: flex; margin-left: 7dvw; flex-direction: column; gap: 2dvh">
+    <div style="display: flex; gap: 2dvw">
+      <div class="card">
+        <apx-chart
+        [series]="chartOptions.series"
+        [chart]="chartOptions.chart"
+        [dataLabels]="chartOptions.dataLabels"
+        [plotOptions]="chartOptions.plotOptions"
+        [yaxis]="chartOptions.yaxis"
+        [legend]="chartOptions.legend"
+        [fill]="chartOptions.fill"
+        [stroke]="chartOptions.stroke"
+        [tooltip]="chartOptions.tooltip"
+        [xaxis]="chartOptions.xaxis"
+      ></apx-chart>
+      </div>
+      <div class="card">
+        <apx-chart
+        [series]="radialChart.series"
+        [chart]="radialChart.chart"
+        [plotOptions]="radialChart.plotOptions"
+        [labels]="radialChart.labels"
+      ></apx-chart>
+      </div>
+      <div class="card">
+        <apx-chart
+        [series]="errorChart.series"
+        [chart]="errorChart.chart"
+        [xaxis]="errorChart.xaxis"
+        [stroke]="errorChart.stroke"
+        [tooltip]="errorChart.tooltip"
+        [dataLabels]="errorChart.dataLabels"
+        [legend]="errorChart.legend"
+        [markers]="errorChart.markers"
+        [grid]="errorChart.grid"
+        [yaxis]="errorChart.yaxis"
+        [title]="errorChart.title"
+      ></apx-chart>
+      </div>   
+    </div>
+    <div>
+      <nz-table #editRowTable nzBordered style="height: auto; width: 88dvw; margin: 0 2dvw 0 2.5dvw;" [nzData]="workOrders">
+        <thead>
+          <tr>
+            <th class="item-heading">Serial</th>
+            <th class="item-heading">Account ID</th>
+            <!-- <th>Customer Name</th> -->
+            <th class="item-heading">Estimated Time</th>
+            <!-- <th>Status</th> -->
+            <th class="item-heading">Created At</th>
+            <th class="item-heading">Action</th>
+          </tr>
+        </thead>
+        <tbody *ngIf="workOrders.length > 0" >
+          <tr
+            *ngFor="let workOrder of workOrders; let i = index"
+            (click) = "workOn(workOrder.acc_id,workOrder.team_id,workOrder.customer_id, workOrder.work_order_id)"
+            class="editable-row" 
+          >
+            <td class="list-item">{{ i + 1 }}</td>
+            <td class="list-item" *ngIf =  "!!workOrder.acc_id">{{ workOrder.acc_id }}</td>
+            <td class="list-item" *ngIf =  "!!workOrder.work_order_id">{{ workOrder.work_order_id }}</td>
+            <!-- <td>{{ workOrder.customer_name }}</td> -->
+            <!-- <td>{{ workOrder.estimated_time }}</td> -->
+            <td class="list-item">{{ workOrder.estimated_time?workOrder.estimated_time: "5 minutes" }} </td>
+            <!-- <td>{{ workOrder.status }}</td> -->
+            <td class="list-item">{{ workOrder.createdAt | date }}</td>
+            <td class="list-item"><span nz-icon (click) = "workOn(workOrder.acc_id,workOrder.team_id,workOrder.customer_id, workOrder.work_order_id)" nzType="export" nzTheme="outline" id = "action"></span></td>
+          </tr>
+        </tbody>
+      </nz-table>
+    </div>
+  </div>
+  

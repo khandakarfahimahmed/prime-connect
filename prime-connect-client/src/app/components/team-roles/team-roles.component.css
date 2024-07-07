@@ -1,0 +1,48 @@
+.team-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20dvh;
+}
+
+.team-container div {
+  background-color: #34639f;
+  width: 15dvw;
+  border-radius: 5px;
+  height: 7dvh;
+  padding: 10px;
+  color: #f2eaea;
+  font-size: small;
+  font-weight: 400;
+  text-align: center;
+}
+
+.drawer-disable {
+  position: fixed;
+  top: 10dvh;
+  right: -30dvw;
+  width: 30dvw;
+  height: 80dvh;
+  background-color: #e0d7d7;
+  transition: right 0.7s ease;
+  z-index: 999;
+}
+
+.drawer-enable {
+  position: fixed;
+  top: 2dvh;
+  right: 0dvw;
+  height: 80dvh;
+  width: 30dvw;
+  box-shadow: rgb(163, 169, 169, 0.5);
+  background-color: #e0d7d7;
+  transition: right 0.7s ease;
+  z-index: 999;
+  border-radius: 10px 0px 0px 10px;
+}
+.team-roles-container {
+  /* margin-left: 0dvw; */
+  display: flex;
+}

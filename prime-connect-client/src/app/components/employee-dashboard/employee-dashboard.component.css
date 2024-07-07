@@ -1,0 +1,24 @@
+#action {
+    padding-left: 1dvw; 
+    color: blue; 
+    font-size: large; 
+    cursor: pointer
+}
+.item-heading{
+    text-align: center;
+}
+.list-item {
+    text-align: center;
+    background-color: #F5F5F5;
+}
+
+.card {
+    margin: 2dvh 1dvw 2dvh 3dvw;
+    /* height: 30dvh;
+    width: 25dvw; */
+    width: 25dvw;
+    /* margin: 35px auto; */
+    background-color: #FFFFFF;
+    box-shadow: 1px 2px 3px rgba(0, 1, 2, 0.1), 0 1px 1px rgba(0, 2, 0, 0.08);
+}
+

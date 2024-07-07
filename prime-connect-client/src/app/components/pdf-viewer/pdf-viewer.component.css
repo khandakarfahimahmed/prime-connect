@@ -1,0 +1,10 @@
+#findInput {
+    width: 95%;
+    font-size: xx-large;
+  }
+  
+  ngx-extended-pdf-viewer {
+    height: 100dvh;
+    max-width: 50dvw;
+    position: static;
+  }

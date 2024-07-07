@@ -1,0 +1,16 @@
+<div>
+    <!-- Container with specific styles -->
+    <div *ngIf="imageLoade" class="container" #blinkContainer >
+        <div class="close-button" (click)="closeImage()">
+            <span nz-icon nzType="close" nzTheme="outline" style="color:#A8A8A8"></span>
+        </div>
+        <lib-ngx-image-zoom 
+        [thumbImage]="myThumbnail"
+        [zoomMode]="'toggle'"
+        
+        [enableLens] = true
+        [lensWidth] = 300
+        [lensHeight]= 100  class="image-container"  (zoomPosition)="handleZoomPosition($event)"></lib-ngx-image-zoom>
+    </div>
+</div>
+<!-- [zoomMode]="'toggle'" [magnification]="2"  -->

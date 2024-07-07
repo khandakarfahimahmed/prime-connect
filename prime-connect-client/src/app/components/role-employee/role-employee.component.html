@@ -1,0 +1,195 @@
+<app-loader *ngIf="isLoading"></app-loader>
+<div class="container">
+  <add-employee
+    [visible]="showAddForm"
+    (isVisibleChange)="changeVisible($event)"
+    (addEmployeeEvent)="hideAddEmployeeForm($event)"
+  ></add-employee>
+  <div class="people-container" *ngIf="!isLoading">
+    <h2 style="text-align: center">People</h2>
+    <input
+      id="people-search"
+      type="text"
+      placeholder="search here by employee id..."
+      #searchInput
+      (input)="searchTerm$.next(searchInput.value)"
+    />
+    <div
+      *ngFor="let people of peoples"
+      class="people"
+      (click)="showDetails(people.id)"
+    >
+      <div>
+        <img src="../../../assets/people.png" height="50px" width="50px" />
+        <!-- <img [src]="people.profile_pic" height="50px" width="50px" /> -->
+        <!-- <img src="../../../assets/people1.jpg" height="50px" width="50px" /> -->
+      </div>
+      <div>
+        Name: {{ people.name }}<br />
+        <i class="fa-solid fa-envelope"></i> {{ people.email }}<br />
+        <i class="fa-solid fa-phone"></i> {{ people.phone }}
+      </div>
+    </div>
+  </div>
+  <div class="people-details-container" *ngIf="!isLoading">
+    <h2 style="display: inline; margin-top: 2dvh">Profile</h2>
+    <div class="" id="people-details">
+   
+        <span
+        nz-icon
+        nzType="edit"
+        nzTheme="outline"
+        (click)="showAddForm = !showAddForm"
+      ></span>
+      <div class="people-image">
+        <!-- [src]="selectedPeople.employee.profile_pic" -->
+        <img
+          class="border"
+          src=  "../../../assets/people.png"
+          height="150px"
+          width="150px"
+          style="margin-top: 4dvh; border-radius: 50%"
+        />
+      </div>
+      <div class="people-info">
+        <h2>{{ selectedPeople.employee.name }}</h2>
+        <br />
+        Team : {{ selectedPeople.teamName }}<br />
+        Role : {{ selectedPeople.roleName }}<br />
+        <i class="fa-solid fa-envelope"></i> {{ selectedPeople.employee.email
+        }}<br />
+        <i class="fa-solid fa-phone"></i> {{ selectedPeople.employee.phone }}
+      </div>
+     
+      <div class="side-info">
+        <div id="chart2" class="chart-container2">
+          <apx-chart
+            [series]="chartOptions2.series"
+            [chart]="chartOptions2.chart"
+            [yaxis]="chartOptions2.yaxis"
+            [xaxis]="chartOptions2.xaxis"
+            [labels]="chartOptions2.labels"
+            [stroke]="chartOptions2.stroke"
+            [plotOptions]="chartOptions2.plotOptions"
+            [markers]="chartOptions2.markers"
+            [fill]="chartOptions2.fill"
+            [tooltip]="chartOptions2.tooltip"
+            style="height: 100%; width: 100%"
+          ></apx-chart>
+          <div class="items">
+            <div class="percentage">
+              <div class="box1"></div>
+              <h2>1%</h2>
+            </div>
+            <div class="percentage">
+              <div class="box2"></div>
+              <h2>150%</h2>
+            </div>
+          </div>
+          <div class="side-card-info">
+            <div class="row" style="display: flex; align-items: center">
+              <div class="col-5">
+                <h3 style="margin: 0">Task Completed</h3>
+                <p
+                  style="
+                    margin: 5px 0;
+                    padding: 10px;
+                    background-color: #abe5cf;
+                    color: #0bb460;
+                    border-radius: 19px;
+                    display: inline-block;
+                  "
+                >
+                  3000+
+                </p>
+              </div>
+              <div class="col-5" style="display: flex; justify-content: center">
+                <img
+                  style="margin-left: 2dvw"
+                  height="70px"
+                  width="90px"
+                  src="../../../assets/line.png"
+                  alt=""
+                />
+              </div>
+            </div>
+          </div>
+          <div class="side-card-info" style="margin-top: 3dvh">
+            <div class="row" style="display: flex; align-items: center">
+              <div class="col-5">
+                <h3>Error Report</h3>
+                <p
+                  style="
+                    margin: 5px 0;
+                    padding: 10px;
+                    background-color: #abe5cf;
+                    color: #0bb460;
+                    border-radius: 19px;
+                    display: inline-block;
+                  "
+                >
+                  3000+
+                </p>
+              </div>
+              <div class="col-5" style="display: flex; justify-content: center">
+                <img
+                  style="margin-left: 2dvw"
+                  height="70px"
+                  width="90px"
+                  src="../../../assets/line.png"
+                  alt=""
+                />
+              </div>
+            </div>
+          </div>
+          <div class="side-card-info" style="margin-top: 3dvh">
+            <div class="row" style="display: flex; align-items: center">
+              <div class="col-5">
+                <h3 style="margin: 0">Work Frequency</h3>
+                <p
+                  style="
+                    margin: 5px 0;
+                    padding: 10px;
+                    background-color: #abe5cf;
+                    color: #0bb460;
+                    border-radius: 19px;
+                    display: inline-block;
+                  "
+                >
+                  3000+
+                </p>
+              </div>
+              <div class="col-5" style="display: flex; justify-content: center">
+                <img
+                  style="margin-left: 2dvw"
+                  height="70px"
+                  width="90px"
+                  src="../../../assets/line.png"
+                  alt=""
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="" style="height: 47dvh; width: 40dvw; margin-top: 9.9dvh">
+      <div id="chart1" class="chart-container1">
+        <apx-chart
+          [series]="chartOptions1.series"
+          [chart]="chartOptions1.chart"
+          [yaxis]="chartOptions1.yaxis"
+          [xaxis]="chartOptions1.xaxis"
+          [labels]="chartOptions1.labels"
+          [stroke]="chartOptions1.stroke"
+          [plotOptions]="chartOptions1.plotOptions"
+          [markers]="chartOptions1.markers"
+          [fill]="chartOptions1.fill"
+          [tooltip]="chartOptions1.tooltip"
+          style="height: 100%; width: 100%"
+        ></apx-chart>
+      </div>
+    </div>
+  </div>
+</div>
+

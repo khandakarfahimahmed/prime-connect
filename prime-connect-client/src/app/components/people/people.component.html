@@ -1,0 +1,213 @@
+<app-loader *ngIf="isLoading"></app-loader>
+<div class="container">
+  <add-employee
+    [visible]="showAddForm"
+    (isVisibleChange)="changeVisible($event)"
+    (addEmployeeEvent)="hideAddEmployeeForm($event)"
+  ></add-employee>
+
+  <update-employee
+    [visible]="updateForm"
+    [editId]="editPeople"
+    (isVisibleChange)="changeUpdateVisible($event)"
+    (updateEmployeeEvent)="updateEmployee($event)"
+    *ngIf="editPeople != undefined"
+  ></update-employee>
+
+  <div class="people-container" *ngIf="!isLoading">
+    <h2 style="text-align: center">People</h2>
+    <input
+      id="people-search"
+      type="text"
+      placeholder="search here by employee id..."
+      #searchInput
+      (input)="searchTerm$.next(searchInput.value)"
+    />
+    <div
+      *ngFor="let people of peoples"
+      class="people"
+      (click)="showDetails(people.id)"
+    >
+      <div>
+        <img src="../../../assets/people.png" height="50px" width="50px" />
+        <!-- <img [src]="people.profile_pic" height="50px" width="50px" /> -->
+        <!-- <img src="../../../assets/people1.jpg" height="50px" width="50px" /> -->
+      </div>
+      <div>
+        <h4 style="margin-left: 1.9dvh">
+          {{ people.name }} (id: {{ people.id }})
+        </h4>
+        <!-- <br /> -->
+        <i class="fa-solid fa-envelope"></i> {{ people.email }}<br />
+        <i class="fa-solid fa-phone"></i> {{ people.phone }}
+      </div>
+    </div>
+  </div>
+  <div class="people-details-container" *ngIf="!isLoading">
+    <h2 style="display: inline; margin-top: 2dvh">Profile</h2>
+    <button
+      nz-button
+      (click)="showAddForm = !showAddForm"
+      nzType="primary"
+      style="
+        display: inline;
+        left: 48.6dvw;
+        height: 6dvh;
+        width: fit-content;
+        padding-left: 0.5dvw;
+        padding-right: 0.5dvw;
+        margin-top: 1dvh;
+      "
+    >
+      Add Employee
+    </button>
+
+    <div id="people-details" *ngIf="!(selectedPeople == undefined || selectedPeople == '')">
+      <span
+        nz-icon
+        nzType="edit"
+        nzTheme="outline"
+        (click)="
+          updateForm = !updateForm; editClicked(selectedPeople.employee.id)
+        "
+      ></span>
+      <div class="people-image">
+        <!-- [src]="selectedPeople.employee.profile_pic" -->
+        <!-- src="../../../assets/people.png" -->
+        <img
+          class="border"
+          src="../../../assets/people.png"
+          height="150px"
+          width="150px"
+          style="margin-top: 4dvh; border-radius: 50%"
+        />
+      </div>
+      <div class="people-info">
+        <h2>{{ selectedPeople.employee.name }}</h2>
+        <br />
+        Employee ID : {{ selectedPeople.employee.id }}<br />
+        <!-- Role : {{ selectedPeople.roleName }}<br /> -->
+        <i class="fa-solid fa-envelope"></i> {{ selectedPeople.employee.email
+        }}<br />
+        <i class="fa-solid fa-phone"></i> {{ selectedPeople.employee.phone }}
+      </div>
+
+      <div class="side-info">
+        <div id="chart2" class="chart-container2">
+          <app-gradient-circle-chart
+            [activePercentage]="workPercentageById"
+            [inActivePercentage]="restPercentage"
+            [labels1]="['Tasks Percentage']"
+          ></app-gradient-circle-chart>
+          <div class="side-card-info">
+            <div class="row" style="display: flex; align-items: center">
+              <div class="col-5">
+                <h3 style="margin: 0">Task Completed</h3>
+                <p
+                  style="
+                    margin: 4px 0;
+                    padding: 0.7dvh;
+                    background-color: #abe5cf;
+                    color: #0bb460;
+                    border-radius: 19px;
+                    display: inline-block;
+                    margin-left: 8px;
+                  "
+                >
+                  {{ completedTasks }}+
+                </p>
+              </div>
+              <div class="col-5" style="display: flex; justify-content: center">
+                <img
+                  style="margin-left: 2dvw"
+                  height="70px"
+                  width="90px"
+                  src="../../../assets/line.png"
+                  alt=""
+                />
+              </div>
+            </div>
+          </div>
+          <div class="side-card-info" style="margin-top: 3dvh">
+            <div class="row" style="display: flex; align-items: center">
+              <div class="col-5">
+                <h3 style="margin-left: -20px; padding-right: 10px">
+                  Error Report
+                </h3>
+                <p
+                  style="
+                    margin: 5px 0;
+                    padding: 0.7dvh;
+                    background-color: #f8d7da;
+                    color: #e63a4b;
+                    border-radius: 19px;
+                    display: inline-block;
+                    margin-left: -15px;
+                    /* margin-left: 8px; */
+                  "
+                >
+                  {{ totalErrorCount }}+
+                </p>
+              </div>
+              <div class="col-5" style="display: flex; justify-content: center">
+                <img
+                  style="margin-left: 2dvw"
+                  height="70px"
+                  width="90px"
+                  src="../../../assets/line.png"
+                  alt=""
+                />
+              </div>
+            </div>
+          </div>
+          <div class="side-card-info" style="margin-top: 3dvh">
+            <div class="row" style="display: flex; align-items: center">
+              <div class="col-5">
+                <h3 style="margin: 0">Work Frequency</h3>
+                <p
+                  style="
+                    margin: 5px 0;
+                    padding: 0.7dvh;
+                    background-color: #abe5cf;
+                    color: #0bb460;
+                    border-radius: 19px;
+                    display: inline-block;
+                    margin-left: 8px;
+                  "
+                >
+                  {{ workFrequency }}+
+                </p>
+              </div>
+              <div class="col-5" style="display: flex; justify-content: center">
+                <img
+                  style="margin-left: 2dvw"
+                  height="70px"
+                  width="90px"
+                  src="../../../assets/line.png"
+                  alt=""
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="" style="height: 47dvh; width: 40dvw; margin-top: 9.9dvh"  *ngIf="!(selectedPeople == undefined || selectedPeople == '')">
+      <div id="chart1" class="chart-container1" style="margin-top: 13vh">
+        <apx-chart
+          [series]="chartOptions1.series"
+          [chart]="chartOptions1.chart"
+          [yaxis]="chartOptions1.yaxis"
+          [xaxis]="chartOptions1.xaxis"
+          [labels]="chartOptions1.labels"
+          [stroke]="chartOptions1.stroke"
+          [plotOptions]="chartOptions1.plotOptions"
+          [markers]="chartOptions1.markers"
+          [fill]="chartOptions1.fill"
+          [tooltip]="chartOptions1.tooltip"
+          style="height: 100%; width: 100%"
+        ></apx-chart>
+      </div>
+    </div>
+  </div>
+</div>

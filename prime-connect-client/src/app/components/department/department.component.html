@@ -1,0 +1,44 @@
+<app-loader *ngIf="isLoading"></app-loader>
+<!-- <nz-spin nzTip="Loading..." *ngIf="isLoading">
+  <nz-alert
+    nzType="info"
+    nzMessage="Alert message title"
+    nzDescription="Further details about the context of this alert."
+    style="height: 100dvh; width: 100dvw; z-index: 999;"
+  ></nz-alert>
+</nz-spin> -->
+<add-department
+  [visible]="showAddForm"
+  (isVisibleChange)="changeVisible($event)"
+  (addDepartmentEvent)="hideAddDepartmentForm($event)"
+></add-department>
+<div *ngIf="deptEmployees.length > 0" style="display: flex; gap: 1.5dvw; margin-left: 3dvw;">
+  <div class="dept-container">
+    <h2 style="margin-left: -4dvw; display: inline;">List of Departments</h2>
+    <span nz-icon nzType="plus" nzTheme="outline" nzTheme="outline" (click)="addDept()" class="add-dept-btn"></span>
+    <div
+      *ngFor="let dept of deptList; let i = index"
+      (click)="deptClicked(dept.id)"
+      style="
+        font-size: large;
+        cursor: grab;
+        padding-top: 0.93rem;
+      "
+    >
+      {{ dept.name }}
+    </div>
+    <!-- <div id="add-dept-btn" (click)="addDept()">+</div> -->
+  </div>
+
+  <div class="grid-container">
+    <div *ngFor="let row of chunkArray(deptEmployees, 3)" class="grid-row">
+      <div *ngFor="let item of row" class="grid-item">
+        <h3 style="color: #FFFFFF;">{{ item.name }}</h3>
+        <!-- <br /> -->
+       <h4 style="color:rgb(83,202,253);"> {{ item.activeEmployee.length }}/{{ item.employees.length }}</h4>
+        <h6 style="color: rgb(180,165,229); display: inline">active/total </h6>     
+      </div>
+    </div>
+  </div>
+</div>
+

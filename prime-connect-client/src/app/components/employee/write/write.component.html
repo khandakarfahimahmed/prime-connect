@@ -1,0 +1,32 @@
+<div class="container">
+  <div *ngIf="loading; else content" class="loading-indicator">
+    <app-loader></app-loader>
+  </div>
+  <ng-template #content>
+    <div class="left-side">
+      <!-- Angular component 1 -->
+      <app-write-form 
+        *ngIf="!loading && image_array.length > 0"
+        [controlNames]="controlNames"
+        [array_number]="array_number"
+        [supportingValues]="supportingValues"
+        [field_id]="field_id"
+        [work_order_id]="work_order_id"
+        [fieldsId]="fieldsId"
+        [assigned_to]="assigned_to"
+        [customer_field_details]="customer_field_details"
+        [comment_card]="comment_card" 
+        [image_array]="image_array"
+        [distribute_work_order_list]="distribute_work_order_list" 
+        [customer_details]="customer_details">
+      </app-write-form>
+    </div>
+    <div class="yellow-side">
+      <!-- Angular component 2 -->
+      <app-image-loader
+        *ngIf="!loading && image_array.length > 0"
+        [image_array]="image_array">
+      </app-image-loader>
+    </div>
+  </ng-template>
+</div>

@@ -1,0 +1,58 @@
+<div class="container">
+  <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+    <!-- Steps -->
+    <div *ngIf="array_number.length !== 0">
+      
+      <div *ngFor="let number of array_number">
+        <div *ngIf="currentStep === number" >
+            <div *ngFor="let controlName of controlNames[number - 1]" class="card">
+              <label [for]="controlName" class="input-label">{{ controlName | titlecase }}:</label><br>
+              <div class="wrapper">
+                 <input type="text" [formControlName]="controlName" class="input-field" (focus)="logInputName(controlName)">
+                 <a nz-button nzType="primary" [nzSize]="size" nzShape="circle" (click)="addCross(controlName)" class="cross">X</a><br>
+
+
+              </div>
+              <!-- <input type="text" [formControlName]="controlName" class="input-field">
+              <button nz-button nzType="primary" [nzSize]="size" nzShape="circle" (click)="addCross($event, controlName)" class="cross">X</button><br> -->
+              <a class="comment" (click)="showModal1(controlName)">
+                <span nz-icon nzType="message"></span>
+              </a>
+              
+              <br />
+              <br />
+        
+              <nz-modal [(nzVisible)]="isVisible" nzTitle="Error Type" (nzOnCancel)="handleCancel()">
+                <div *nzModalContent>
+                  <ul>
+                    <li><label><input type="checkbox" value="Spelling Error"> Spelling error</label></li>
+                    <li><label><input type="checkbox" value="Blank Field"> Blank Field</label></li>
+                    <li><label><input type="checkbox" value="Input Mismatch"> Input Mismatch </label></li>
+                    <li><input type="text" formControlName="textInput"></li> <!-- Bind to form control -->
+                  </ul>
+                </div>
+                <div *nzModalFooter>
+                  <button nz-button nzType="primary" (click)="submitModalValues( controlName)">Submit</button>
+                </div>
+              </nz-modal>
+              
+            </div>
+            <div *ngIf="currentStep < array_number.length ">
+              <!-- <button nz-button nzType="primary" class="submit-button"  (click)="goToStep(number + 1)">Next</button> -->
+              <!-- <button nz-button nzType="primary" class="submit-button" (click)="goToStep(number + 1); ">Next</button> -->
+
+
+            </div>
+            <div *ngIf="currentStep === array_number.length ">
+                <button type="submit" nz-button nzType="primary" class="submit-button" [disabled]="!myForm.valid">Submit</button>
+            </div>
+          
+          </div>
+    </div>
+
+    </div>
+    
+  </form>
+</div>
+
+

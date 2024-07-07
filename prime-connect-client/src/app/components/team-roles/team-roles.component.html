@@ -1,0 +1,16 @@
+<div class="team-roles-container">
+  <app-teams
+    (addTeamEvent)="addTeamEvent($event)"
+    (addLoader)="teamClicked()"
+    style="margin-left: 2dvw"
+  ></app-teams>
+  <app-roles style="margin-left: 2dvw;"></app-roles>
+  <app-loader *ngIf="isLoading"></app-loader>
+  <add-team
+    [visible]="showAddForm"
+    (isVisibleChange)="changeVisible($event)"
+  ></add-team>
+</div>
+
+<!-- style="margin-left: 5dvw"
+style="margin-left: 5dvw" -->

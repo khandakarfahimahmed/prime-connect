@@ -1,0 +1,115 @@
+<div class="container">
+  <add-role
+    [team_id]="teamId"
+    [visible]="showAddForm"
+    (isVisibleChange)="changeVisible($event)"
+    (addRoleEvent)="hideAddRoleForm($event)"
+  ></add-role>
+
+  <h2 style="display: inline">Teams & Roles > {{ selectedTeam }}</h2>
+  <button
+    nz-button
+    (click)="showRoleAddForm()"
+    nzType="primary"
+    style="display: inline; top: 8dvh; left: 44dvw"
+  >
+    Add Role
+  </button>
+  <div style="display: flex">
+    <div class="admin-info">
+      <div style="display: flex">
+        <img src="../../../assets/people.png" height="80px" width="80px" />
+        <span style="margin-top: 15px">
+          <b> Admin Name:</b> {{ teamAdmin?.name }}<br /><b>Role:</b>
+          {{ teamAdminRole }}
+        </span>
+      </div>
+      <div
+        id="add-admin-btn"
+        (click)="clickedAdminChange = !clickedAdminChange"
+      >
+        <span class="edit-icon" nz-icon nzType="edit" nzTheme="outline"></span>
+      </div>
+    </div>
+
+    <!-- change team admin form -->
+    <div
+      *ngIf="clickedAdminChange"
+      id="new-admin"
+      [ngClass]="{
+        'slide-in': clickedAdminChange,
+        'slide-out': !clickedAdminChange
+      }"
+    >
+      <form [formGroup]="teamAdminForm" (ngSubmit)="changeAdmin()">
+        <input
+          type="email"
+          id="new-admin-email"
+          placeholder="Enter new admin email"
+          formControlName="email"
+        />
+        <div class="btn">
+          <button
+            type="button"
+            id="cancel-btn"
+            (click)="clickedAdminChange = false"
+          >
+            cancel
+          </button>
+          <button type="submit" id="confirm-btn">confirm</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- employee data table -->
+  <nz-table #filterTable [nzData]="listOfData"  style="height: auto;" nzBordered>
+    <thead>
+      <tr>
+        <th
+          *ngFor="let column of listOfColumns; let i = index"
+          [nzSortOrder]="column.sortOrder"
+          [nzSortFn]="column.sortFn"
+          [nzSortDirections]="column.sortDirections"
+          [nzFilterMultiple]="column.filterMultiple"
+          [nzFilters]="column.listOfFilter"
+          [nzFilterFn]="column.filterFn"
+          [class.employee-id]="i == 0"
+        >
+          {{ column.name }}
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of filterTable.data; let i = index">
+        <!-- listOfData -->
+        <td class="employee-id">{{ data.id }}</td>
+        <td>
+          <img src="../../../assets/people.png" height="30px" width="30px" />
+          {{ data.name | titlecase }}
+        </td>
+        <td>{{ data.email }}</td>
+        <td class="role" style="position: relative; ">
+          <select
+            (change)="onRoleChange($event, data.id)"
+            [ngClass]="{
+              reviewer: data.role_id === roleName.indexOf('Reviewer') + 2,
+              maker: data.role_id === roleName.indexOf('Maker') + 2,
+              checker: data.role_id === roleName.indexOf('Checker') + 2,
+              'super-admin': data.id === 1,
+              'other-class': !(data.role_id === roleName.indexOf('Reviewer') + 2 || data.role_id === roleName.indexOf('Maker') + 2 || data.role_id === roleName.indexOf('Checker') + 2 || data.id === 1)
+            }"
+          >
+            <option
+              *ngFor="let role of roles"
+              [value]="role!"
+              [selected]="data.role_id === role.id "
+            >
+              {{ role.name | titlecase }}
+            </option>
+          </select>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+</div>

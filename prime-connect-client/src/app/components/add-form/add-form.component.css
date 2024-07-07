@@ -1,0 +1,83 @@
+/* add-field.component.css */
+
+/* Modal overlay */
+.nz-modal-mask {
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+  }
+  
+  /* Modal content container */
+  .nz-modal-wrap {
+    width: 400px; /* Adjust the width as needed */
+  }
+  
+  /* Modal header */
+  .nz-modal-header {
+    background-color: #1890ff; /* Blue header */
+    color: #fff; /* White text */
+  }
+  
+  /* Modal title */
+  .nz-modal-title {
+    color: #fff; /* White text */
+  }
+  
+  /* Modal body */
+  .nz-modal-body {
+    padding: 20px; /* Add padding to the body */
+  }
+  
+  /* Modal footer */
+  .nz-modal-footer {
+    text-align: center; /* Center-align the footer content */
+    border-top: 1px solid #e8e8e8; /* Add a border at the top of the footer */
+    padding: 10px; /* Add padding to the footer */
+  }
+  
+  /* Submit button */
+  button[nz-button] {
+    margin-right: 8px; /* Add margin between buttons */
+  }
+  
+  .dynamic-delete-button {
+    cursor: pointer;
+    position: relative;
+    top: 4px;
+    font-size: 24px;
+    color: #999;
+    transition: all 0.3s;
+  }
+
+  .dynamic-delete-button:hover {
+    color: #777;
+  }
+
+  .passenger-input {
+    width: 60%;
+    margin-right: 8px;
+  }
+
+  [nz-form] {
+    max-width: 600px;
+  }
+
+  .add-button {
+    width: 60%;
+  }
+  .input-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px; /* Adjust margin between rows */
+  }
+  
+  .passenger-input {
+    width: 150px; /* Adjust width of input fields */
+    margin-right: 8px; /* Adjust margin between input fields */
+  }
+  
+  .dynamic-delete-button {
+    margin-left: 8px; /* Adjust margin between input field and delete icon */
+  }
+  
+  .add-button {
+    width: auto; /* Adjust width of the Add button */
+  }

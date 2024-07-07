@@ -1,0 +1,53 @@
+<div class="container">
+
+  <form [formGroup]="myForm" >
+    <!-- Steps -->
+    <div *ngIf="array_number.length !== 0">
+      
+      <div *ngFor="let number of array_number">
+        <div *ngIf="currentStep === number" >
+            <div *ngFor="let controlName of controlNames[number - 1]" class="card">
+
+              <nz-card style="width: 380px; position: absolute; top: 2rem; left: 2rem; border-radius: 1.5px; color: darkslategrey; height: 150px; background-color: transparent;">
+                <p style="font-size: 18px;">Name: {{getCustomerDetail(controlName.work_order_id).name}}</p>
+                <p style="font-size: 18px;">NID: {{getCustomerDetail(controlName.work_order_id).nid_no}}</p>
+            </nz-card>
+            
+
+
+              <div class="wrapper">
+         
+                 <input #inputField type="text" [formControlName]="controlName.value" [placeholder]="controlName.value | titlecase" class="input-field" (focus)="logInputName(controlName.value,  controlName.id)" >
+
+                 <div *ngIf="currentStep < array_number.length ">
+                  <button nz-button nzType="primary" class="next-button" type="submit" [disabled]="!myForm.valid"  (click)="goToStep(number + 1, controlName.id)">
+                    <span nz-icon nzType="right" ></span>
+                  </button>
+                </div>
+
+
+              </div>
+
+              <div class="display justify-center" *ngIf="getErrorComments(controlName.id) !== null">
+                <nz-card class="err-card"> 
+            
+                    {{ getErrorComments(controlName.id) }}
+                </nz-card>
+              </div>
+
+            </div>
+
+            <div *ngIf="currentStep === array_number.length ">
+                <button type="submit" nz-button nzType="primary" class="submit-button" [disabled]="!myForm.valid" (click) = "submit()">Submit</button>
+            </div>
+
+ 
+          
+          </div>
+    </div>
+
+    </div>
+    
+  </form>
+</div>
+

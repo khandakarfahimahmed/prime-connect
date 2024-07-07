@@ -1,0 +1,50 @@
+<nz-drawer
+  [nzBodyStyle]="{ overflow: 'auto' }"
+  [nzMaskClosable]="false"
+  [nzWidth]="720"
+  [nzVisible]="visible"
+  nzTitle="Create"
+  [nzFooter]="footerTpl"
+  (nzOnClose)="close()"
+>
+<!-- <div> -->
+    <!-- <h3 style="margin: 10px;">Create a new Role</h3> -->
+    <!-- <div class="form-container"> -->
+        <form  *nzDrawerContent [formGroup]="addNewRole" (ngSubmit)="onAddRole()">
+            <div>
+                <input type="text" formControlName="roleName" placeholder="Enter the name of new role...">
+            </div>
+           <div>
+            <textarea type="text" formControlName="description" placeholder="Write the job description of this role..."> </textarea>
+           </div>
+           <div>
+            <label style="margin:10px">Is this role an author ?</label><input type="checkbox" formControlName="isAuthor" [value]="false" style="height: 15px; width: 15px; margin-left: 0px; margin-bottom: 0px">
+           </div>
+           <div>
+            <!-- <Label style="margin:10px">Which is the access ability of this role ?</Label><br> -->
+            <select formControlName="access">
+                <option value="" [disabled]="true" [selected]="true">Select accessibility</option>
+                <option>Read</option>
+                <option>Write</option>
+                <option>Read_Write</option>
+            </select>
+           </div>
+           <div>
+            <!-- <label style="margin:10px">What is the sequence of this role ?</label><br> -->
+            <input type = "number" formControlName="sequence" placeholder="Enter the sequence number of this role">
+           </div>
+    <!-- <div class="btn">
+        <button type="button" id="cancel" (click)="cancelClicked()">cancel</button>
+        <button type="submit" id="save">save</button>
+    </div> -->
+    </form>
+    <!-- </div> -->
+<!-- </div> -->
+
+<ng-template #footerTpl>
+    <div style="float: right">
+      <button nz-button style="margin-right: 8px;" (click)="close()">Cancel</button>
+      <button nz-button nzType="primary" [disabled]="!addNewRole.valid" type = "submit"(click)="create(); onAddRole()">Create</button>
+    </div>
+  </ng-template>
+</nz-drawer>

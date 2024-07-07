@@ -1,0 +1,70 @@
+
+<div class="container">
+    <div id="container" >
+        <div id="header">
+            <img src="../../assets/logo.png" style="width: 80px; height: 80px;" alt="prime_logo">
+            <h1 style="display: inline;font-weight: 700;font-size: xx-large; margin-top: 30px;">Prime Bank</h1>
+            <h2>Sign in</h2>
+        </div>
+        <div> 
+             <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                <div>
+                    <!-- <label for="email">Email: </label> -->
+                    <input type="email" id="email" formControlName="email" placeholder="Email">
+                </div>
+                <div *ngIf="loginForm.controls['email'].invalid && (loginForm.controls['email'].dirty || loginForm.controls['email'].touched)">
+                  <small *ngIf="loginForm.controls['email']?.errors?.['required']">*Email is required.</small>
+                  <small *ngIf="loginForm.controls['email']?.errors?.['email']">*Invalid email format.</small>
+              </div>
+                <div>
+                  <input id = "password" [type]="passwordVisible ? 'text' : 'password'" formControlName="password" placeholder="Enter your password">
+                  <span
+                  nz-icon
+                  style = " margin-left: -3dvw; cursor: pointer; font-size: large;"
+                  [nzType]="passwordVisible ? 'eye-invisible' : 'eye'"
+                  (click)="passwordVisible = !passwordVisible"
+                ></span>
+              </div>
+              <div *ngIf="loginForm.controls['password'].invalid && (loginForm.controls['password'].dirty || loginForm.controls['password'].touched)">
+                <small *ngIf="loginForm.controls['password']?.errors?.['required']">*Password is required.</small>
+            </div>
+                <div style="margin: 5px">
+                    <input type="checkbox" formControlName="rememberMe" style="margin:3px"> <span style="margin:5px">Remember me</span> <span style="margin-left: 50px">Forgot Password ?</span>
+                </div>
+                <div style="display: flex; flex-direction: column; align-items: center ; margin: 5px;">
+                    <button type="submit" [style.background-color]="loginForm.invalid? '#ECF7FF':'#5D8AC4'" id="signin-btn" [disabled]="!loginForm.valid">Sign In</button>
+                    <!-- <h4>Sign in as Super Admin</h4> -->
+                </div>
+            </form>
+          </div>
+        </div>     
+            <!-- <form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="onSubmit()">
+                <nz-form-item>
+                  <nz-form-control nzErrorTip="Please input your valid email!">
+                    <nz-input-group nzPrefixIcon="user">
+                      <input type="text" nz-input formControlName="email" placeholder="enter your email" />
+                    </nz-input-group>
+                  </nz-form-control>
+                </nz-form-item>
+                <nz-form-item>
+                  <nz-form-control nzErrorTip="Please input your Password!">
+                    <nz-input-group nzPrefixIcon="lock">
+                      <input type="password" nz-input formControlName="password" placeholder="Password" />
+                    </nz-input-group>
+                  </nz-form-control>
+                </nz-form-item>
+                <div nz-row class="login-form-margin">
+                  <div nz-col [nzSpan]="12">
+                    <label nz-checkbox formControlName="remember">
+                      <span>Remember me</span>
+                    </label>
+                  </div>
+                  <div nz-col [nzSpan]="12">
+                    <a class="login-form-forgot">Forgot password</a>
+                  </div>
+                </div>
+                <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'">Log in</button>
+                Or
+                <a>register now!</a>
+              </form> -->
+</div>

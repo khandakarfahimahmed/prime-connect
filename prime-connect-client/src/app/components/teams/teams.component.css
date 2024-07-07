@@ -1,0 +1,94 @@
+
+.team-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.team-container div {
+  background-color: #425c81;
+  width: 15dvw;
+  border-radius: 5px;
+  height: fit-content;
+  padding: 10px;
+  color: #f2eaea;
+  font-size: large;
+  font-weight: 400;
+  text-align: center;
+  padding-top: 2.2dvh;
+  padding-bottom: 2.2dvh;
+}
+#add-team-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  background-color: #425c81;
+  font-weight: 500;
+  font-size: x-large;
+  cursor: pointer;
+}
+
+.grid-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.grid-row {
+  display: flex;
+  width: 100%;
+}
+
+.grid-item {
+  flex-grow: 1;
+  flex-basis: calc(33.33% - 20px); /* Adjust according to your needs */
+  margin: 10px;
+  padding: 10px;
+  font-size: x-large;
+  font-weight: 600;
+  text-align: center;
+  height: fit-content;
+  width: 9dvw;
+  background-color: #3468C0;;
+  border-radius: 10px;
+  box-shadow: 0 3px 4px rgba(0, 0, 0, 0.1), 0 1px 1px rgba(0, 0, 0, 0.08);
+  font-family: sans-serif;
+}
+
+.team-container .header-plus {
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.app-teams {
+  display: flex;
+  margin-left: 9dvw;
+  margin-top: 6dvh;
+
+  justify-content: space-around;
+  column-gap: 1.9rem;
+}
+
+.team:hover {
+  cursor: pointer;
+}
+.add-team-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  background-color: #425c81;
+  font-weight: 600;
+  font-size: large;
+  cursor: pointer;
+}
